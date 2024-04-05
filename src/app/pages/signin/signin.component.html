@@ -1,21 +1,33 @@
 <main>
-    <form>
+    <form [formGroup]="form">
         <h1>Inicia Sesión con tu cuenta</h1>
-        <mat-form-field >
-        <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Ex. pat@example.com">
+            <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+            @if (form.get('email') && !form.hasError('required')) {
+                <mat-error>Correo inválido</mat-error>
+            }
+
         </mat-form-field>
 
         <mat-form-field >
             <mat-label>Contraseña</mat-label>
-            <input type="password" matInput placeholder="Contraseña">
+            <input type="password" matInput placeholder="Contraseña" formControlName="password">
+            @if (form.get('password') && !form.hasError('required')) {
+                <mat-error>Se requiere contraseña</mat-error>
+            }
         </mat-form-field>
         
         <div class="aligned-to-right">
-            <button mat-button>Recuperar contraseña</button>
+            <button mat-button color="primary" [disabled]="!form.get('email')!.valid">
+                Recuperar contraseña
+            </button>
         </div>
 
-        <button mat-raised-button color="primary">Iniciar Sesion</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">
+            Iniciar Sesión
+        </button>
+
         <button mat-stroked-button color="primary">Registrarse</button>
 
     </form>
