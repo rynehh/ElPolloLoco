@@ -1,0 +1,43 @@
+main{
+    background-color: rgba(195, 75, 75, 0.592);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    button,
+    mat-form-field{
+        width: -webkit-fill-available;
+    }
+
+    mat-form-field{
+        background-color: transparent;
+    }
+
+    button{
+        margin: 5px 0;
+
+        &[mat-button]{
+            width: auto;
+        }        
+    }
+    
+    .aligned-to-right{
+        text-align: right;
+        width: 100%;
+    }
+}
+
+h1{
+    color: black;
+
+}
