@@ -1,0 +1,112 @@
+.navbar {
+    position: fixed;
+    top: 0; 
+    width: 100%; 
+    z-index: 1000;
+    font-family: 'Saeada';
+    font-size: x-large;
+    background: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-container {
+    position: absolute; 
+    padding: 10px; 
+}
+.logo {
+    width: 130px; 
+    transform: translateY(60%) rotate(-5deg); 
+}
+
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 12px 1vw; 
+}
+
+
+.carousel-item {
+    transition: transform 0.6s ease; 
+    margin-bottom: 30px;
+}
+
+.carousel-item img {
+    width: 100%; 
+    height: 100%; 
+}
+
+.white-text {
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: yellow; 
+}
+
+h1{
+    text-align: center;
+    font-family: 'Saeada';
+}
+
+h3{
+    font-family: 'Saeada';
+}
+
+
+.menu-item {
+    font-family: 'Saeada';
+    height: 400px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    margin: 10px auto;
+}
+
+.vermas {
+    background-color: transparent;
+    color: black;
+    border-color: black;
+}
+  
+.vermas:hover {
+    background-color: grey;
+    color: black;
+}
+
+.menu-image {
+    max-width: 100%;
+    height: 200px; margin-bottom: 10px;
+}
+  
+  
+
+/* Estilos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        font-size: medium; /* Tamaño de fuente relativo */
+        padding: 5px;
+    }
+
+    .logo img {
+        width: 50px; /* Tamaño de logo relativo */
+    }
+
+    .links a {
+        margin: 0 1vw; /* Espaciado flexible */
+    }
+
+    .actions button {
+        font-size: 3vw; /* Tamaño de fuente relativo */
+        margin: 5px 1vw; /* Espaciado flexible */
+    }
+}

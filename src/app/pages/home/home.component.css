@@ -1,0 +1,52 @@
+
+.navbar {
+    font-family: 'Saeada';
+    font-size: x-large;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .links {
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  
+  .links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  /* responsivo */
+  
+  @media (max-width: 768px) {
+    .links a {
+      margin-right: 10px;
+    }
+  }
+  
+  .links a:last-child {
+    margin-right: 0; 
+  }
+  
+  .links a:hover {
+    color: yellow;
+  }
+  
+  .actions {
+    display: flex;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .navbar {
+      font-size: large; 
+    }
+  }

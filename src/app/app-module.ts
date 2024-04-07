@@ -6,19 +6,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat'; 
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'; 
 import { defaultEnvironment } from './environments/environment.default';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(defaultEnvironment.firebase),
-    AngularFireAuthModule, // Make sure AngularFireAuthModule is imported
+    AngularFireAuthModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
 })
-export class AppModule { }
+export class AppModule { 
+   ngDoBootstrap() {}
+}

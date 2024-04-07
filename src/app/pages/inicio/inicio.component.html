@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
+        </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menú</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Promociones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sucursales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Carrito</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+  
+
+<div class="main-content" style="margin-top: 80px;"> 
+    <carousel>
+    <slide>
+        <img src="/assets/imagenes/carrusel3.jpg" alt="Imagen 1">
+    </slide>
+  </carousel>
+</div>
+<br>
+
+<h1 class="menu">Menú</h1>
+<div class="container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let section of menuSections">
+        <div class="menu-item">
+          <h3>{{ section.title }}</h3>
+          <img [src]="section.imageUrl" alt="{{ section.title }}" class="menu-image">
+          <p>{{ section.description }}</p>
+          <button type="button" class="btn btn-primary vermas">Ver más</button>
+        </div>
+      </div>
+    </div>
+</div>

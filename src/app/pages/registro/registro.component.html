@@ -1,0 +1,48 @@
+<main>
+    <form [formGroup]="form">
+        <h1>¡Registrate con los expertos en Pollos!</h1>
+            <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+            @if (form.get('email') && !form.hasError('required')) {
+                <mat-error>Correo inválido</mat-error>
+            }
+
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Nombre de Usuario</mat-label>
+            <input type="user" matInput placeholder="Usuario" formControlName="user">
+            @if (form.get('user') && !form.hasError('required')) {
+                <mat-error>Se requiere usuario</mat-error>
+            }
+        </mat-form-field>
+
+
+        <mat-form-field >
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput placeholder="Contraseña" formControlName="password">
+            @if (form.get('password') && !form.hasError('required')) {
+                <mat-error>Se requiere contraseña</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Confirma tu contraseña</mat-label>
+            <input type="password" matInput placeholder="Confirmar Contraseña" formControlName="password2">
+            @if (form.get('password') && !form.hasError('mismatch')) {
+                <mat-error>Las contraseñas no coinciden</mat-error>
+            }
+        </mat-form-field>
+        
+
+        <button mat-raised-button color="primary" [disabled]="!form.valid">
+            Crear Cuenta
+        </button>
+        
+        <br>
+        <p>¿Ya tienes cuenta? ¡Inicia Sesión!</p>
+        <button mat-stroked-button color="primary">Iniciar Sesion</button>
+
+    </form>
+</main>
