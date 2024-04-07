@@ -1,4 +1,9 @@
 <main>
+
+    <div class="logo-container">
+        <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
+    </div>
+    
     <form [formGroup]="form">
         <h1>¡Registrate con los expertos en Pollos!</h1>
             <mat-form-field >
@@ -36,13 +41,13 @@
         </mat-form-field>
         
 
-        <button mat-raised-button color="primary" [disabled]="!form.valid">
+        <button mat-raised-button color="warn" [disabled]="!form.valid">
             Crear Cuenta
         </button>
         
         <br>
         <p>¿Ya tienes cuenta? ¡Inicia Sesión!</p>
-        <button mat-stroked-button color="primary">Iniciar Sesion</button>
+        <button mat-stroked-button color="warn">Iniciar Sesion</button>
 
     </form>
 </main>

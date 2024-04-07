@@ -1,4 +1,9 @@
 <main>
+    
+    <div class="logo-container">
+        <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
+    </div>
+
     <form [formGroup]="form">
         <h1>Inicia Sesión con tu cuenta</h1>
             <mat-form-field >
@@ -19,19 +24,19 @@
         </mat-form-field>
         
         <div class="aligned-to-right">
-            <button mat-button color="primary" [disabled]="!form.get('email')!.valid">
+            <button mat-button color="warn" [disabled]="!form.get('email')!.valid">
                 Recuperar contraseña
             </button>
         </div>
 
-        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()"
+        <button mat-raised-button color="warn" [disabled]="!form.valid" (click)="login()"
         *ngIf="!isLoggingIn">
             Iniciar Sesión
         </button>
-        <button mat-raised-button color="primary" class="button-loader" *ngIf="isLoggingIn">
+        <button mat-raised-button color="warn" class="button-loader" *ngIf="isLoggingIn">
             <mat-spinner color="accent" diameter="20"></mat-spinner>
         </button>
-        <button mat-stroked-button color="primary">Registrarse</button>
+        <button mat-stroked-button color="warn">Registrarse</button>
 
     </form>
 </main>

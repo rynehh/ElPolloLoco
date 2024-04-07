@@ -1,5 +1,6 @@
 main{
-    background-color: rgba(195, 75, 75, 0.592);
+    background-color: rgb(255, 255, 255);
+    font-family: 'Saeada';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,5 +48,33 @@ form{
 
 h1{
     color: black;
+    font-family: 'Saeada';
 
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 28px;
+
+}
+
+.logo {
+    transform: rotate(-5deg);
+    width: 150px;
+    
+}
+
+
+@media (max-width: 1200px) {
+    main {
+        padding: 20px; 
+    }
+
+    form {
+        max-width: 400px; 
+    }
+
+    .logo {
+        width: 100px; 
+    }
 }
