@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-signin',
@@ -25,7 +25,9 @@ export class SigninComponent implements OnInit {
       password: ['', [Validators.required]]      
     });
   }
-
+  RedReg(){
+    this.router.navigate(['registro']);
+  }
   login(){
    this.isLoggingIn=true;
    this.authService.signIn({
@@ -33,7 +35,7 @@ export class SigninComponent implements OnInit {
     password: this.form.value.password
    }).subscribe({
     next:() => {
-      this.router.navigate(['home']);
+      this.router.navigate(['inicio']);
    },
     error:(err) => {
     this.isLoggingIn=false;

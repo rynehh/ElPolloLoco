@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
   {
     path: 'signin',
     loadChildren: () => import('./pages/signin/signin.module')

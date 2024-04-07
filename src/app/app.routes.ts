@@ -16,6 +16,7 @@ export const routes: Routes = [{
       loadChildren: () => import('./pages/registro/registro.module')
       .then(m => m.RegistroModule)
       },
+      {path: '', redirectTo: '/inicio', pathMatch: 'full'},
       {
         path: 'inicio',
         loadChildren: () => import('./pages/inicio/inicio.module')

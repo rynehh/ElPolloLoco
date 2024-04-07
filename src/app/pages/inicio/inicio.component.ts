@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+
   ngOnInit(): void {
     
   }
@@ -19,5 +20,4 @@ export class InicioComponent implements OnInit {
     { title: 'Postres', description: '¡Acompañalo con un postre!', imageUrl: '/assets/imagenes/postre.png' }
     
 ];
-
 }

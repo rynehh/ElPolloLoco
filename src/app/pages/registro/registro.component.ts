@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-registro',
@@ -9,10 +11,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistroComponent implements OnInit{
 
   form!: FormGroup;
-
+  isRegister = false;
+  authService=inject(AuthenticationService);
   constructor(
 
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +29,25 @@ export class RegistroComponent implements OnInit{
       validators: this.passwordMatchValidator
     });
   }
-  
+  RedSig(){
+    this.router.navigate(['signin']);
+  }
+  resgister(){
+    this.isRegister=true;
+    this.authService.register({
+     email: this.form.value.email,
+     username: this.form.value.user,
+     password: this.form.value.password
+    }).subscribe({
+     next:() => {
+       this.router.navigate(['signin']);
+    },
+     error:(err) => {
+     this.isRegister=false;
+    },
+   });
+  }
+
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('password2')?.value;

@@ -41,13 +41,15 @@
         </mat-form-field>
         
 
-        <button mat-raised-button color="warn" [disabled]="!form.valid">
+        <button mat-raised-button color="warn" [disabled]="!form.valid" (click)="resgister()"  *ngIf="!isRegister">
             Crear Cuenta
         </button>
-        
+        <button mat-raised-button color="warn" class="button-loader" *ngIf="isRegister">
+            <mat-spinner color="accent" diameter="20"></mat-spinner>
+        </button>
         <br>
         <p>¿Ya tienes cuenta? ¡Inicia Sesión!</p>
-        <button mat-stroked-button color="warn">Iniciar Sesion</button>
+        <button mat-stroked-button color="warn" (click)="RedSig()">Iniciar Sesion</button>
 
     </form>
 </main>
