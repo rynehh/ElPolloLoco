@@ -13,11 +13,12 @@ export class InicioComponent implements OnInit {
   }
 
   menuSections = [
-    { title: 'Pollos', description: '¡Disruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png' },
+    { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png' },
     { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png'},
     { title: 'Complementos', description: 'Para disfrutarse con tu pollo', imageUrl: '/assets/imagenes/comp.png' },
-    { title: 'Bebidas', description: 'Refrescate con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png' },
-    { title: 'Postres', description: '¡Acompañalo con un postre!', imageUrl: '/assets/imagenes/postre.png' }
+    { title: 'Bebidas', description: 'Refréscate con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png' },
+    { title: 'Postres', description: '¡Acompañalo con un postre!', imageUrl: '/assets/imagenes/postre.png' },
+    { title: '¡Tu último pedido!', description: '¿Disfrutaste tu última comida? ¡Vuelve a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' }
     
 ];
 }

@@ -40,7 +40,7 @@ export class RegistroComponent implements OnInit{
      password: this.form.value.password
     }).subscribe({
      next:() => {
-       this.router.navigate(['signin']);
+      this.router.navigate(['signin']);
     },
      error:(err) => {
      this.isRegister=false;
