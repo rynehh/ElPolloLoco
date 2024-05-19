@@ -90,7 +90,7 @@ h3{
   
 @media (max-width: 1200px) {
     .navbar {
-        font-size: medium; /* Tamaño de fuente relativo */
+        font-size:smaller; /* Tamaño de fuente relativo */
         padding: 5px;
     }
 

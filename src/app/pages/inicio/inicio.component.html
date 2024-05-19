@@ -1,38 +1,45 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.0.0/introjs.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.0.0/intro.min.js"></script>
+
+
 <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
         </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+      <button id=buttoncol class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/inicio">Inicio</a>
+            <a id=inicio class="nav-link" href="/inicio">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/inicio">Menú</a>
+            <a id=menu class="nav-link" href="#menu">Menú</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/inicio">Promociones</a>
+            <a id=promos class="nav-link" href="/inicio">Promociones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/inicio">Sucursales</a>
+            <a id=sucur class="nav-link" href="/inicio">Sucursales</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/registro">Registrarse</a>
+            <a id=regis class="nav-link" href="/registro">Registrarse</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signin">Iniciar Sesión</a>
+            <a id=signin class="nav-link" href="/signin">Iniciar Sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/carrito">Carrito</a>
+            <a id=carro class="nav-link" href="/carrito">Carrito</a>
           </li>
         </ul>
       </div>
     </div>
+    
 </nav>
+
+
   
 
 <div class="main-content" style="margin-top: 80px;"> 
@@ -44,7 +51,7 @@
 </div>
 <br>
 
-<h1 class="menu">Menú</h1>
+<h1 id=menu class="menu">Menú</h1>
 <div class="container">
     <div class="row">
       <div class="col-md-3" *ngFor="let section of menuSections">
