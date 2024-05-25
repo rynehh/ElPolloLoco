@@ -28,6 +28,7 @@ export class SigninComponent implements OnInit {
   RedReg(){
     this.router.navigate(['registro']);
   }
+  errorMessage: string|null =null;
   login(){
    this.isLoggingIn=true;
    this.authService.signIn({
@@ -38,7 +39,9 @@ export class SigninComponent implements OnInit {
       this.router.navigate(['inicio']);
    },
     error:(err) => {
+      this.errorMessage=err.Code;
     this.isLoggingIn=false;
+
    },
   });
   }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import introJs from 'intro.js'; 
 import $ from 'jquery'; 
 import { Producto } from '../producto.model';
 import{ ProductoService } from '../producto.service';
 import{ CarritoService } from '../carrito.service';
+import { AuthenticationService } from '../../services/authentication.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -13,7 +14,8 @@ import{ CarritoService } from '../carrito.service';
 export class InicioComponent implements OnInit {
   productos:Producto[]=[];
   itemInCart:number=0;
-  constructor(private productoService:ProductoService, private carritoService:CarritoService){}
+  aus=inject(AuthenticationService);
+  constructor(private productoService:ProductoService, private carritoService:CarritoService, private authService: AuthenticationService){}
 
   ngOnInit(): void {
 
@@ -23,46 +25,61 @@ export class InicioComponent implements OnInit {
          console.log(this.itemInCart);
         });
     this.productos=this.productoService.getProductos();
-    $(document).ready(function(){
-
-    introJs().setOptions({
-      steps: [{
-        element: document.querySelector('#signin') as HTMLElement,
-        title: "👆",
-        intro: "Haz clic aquí para iniciar sesión."
-      }, {
-        element: document.querySelector('#regis') as HTMLElement,
-        title: "👆",
-        intro: "Haz clic aquí para crear una cuenta."
-      },{
-        element: document.querySelector('#sucur') as HTMLElement,
-        title: "👆",
-        intro: "Haz clic aquí para ver nuestras sucursales."
-      },{
-        element: document.querySelector('#promos') as HTMLElement,
-        title: "👆",
-        intro: "Haz clic aquí para ver nuestras promociones."
-      },{
-        element: document.querySelector('#carro') as HTMLElement,
-        title: "👆",
-        intro: "Haz clic aquí para ver el carrito de compra."
-      }]
-
-    }).start();
-
-    introJs().start();
-
-    $("#buttoncol").click(function(){
-      $("#navbarCollapse").slideToggle("slow");
+    this.aus.user$.subscribe(user=>{
+      console.log("hola por fin entre aqui en inicio",this.aus.currentUserSig());
+      if (user == null) {
+        console.log("soy el usuario", this.getusuario());
+        $(document).ready(function(){
+          introJs().setOptions({
+            steps: [{
+              element: document.querySelector('#signin') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para iniciar sesión."
+            }, {
+              element: document.querySelector('#regis') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para crear una cuenta."
+            },{
+              element: document.querySelector('#sucur') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para ver nuestras sucursales."
+            },{
+              element: document.querySelector('#promos') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para ver nuestras promociones."
+            },{
+              element: document.querySelector('#carro') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para ver el carrito de compra."
+            }]
+      
+          }).start();
+      
+          introJs().start();
+      
+        });
+      
+      }
     });
+
     
 
-
-  });
-
-
+    $(document).ready(function(){
+      $("#buttoncol").click(function(){
+        $("#navbarCollapse").slideToggle("slow");
+      });
+    });
   }
    
+logout(){
+  console.log("entre a logout");
+  this.authService.logout();
+}
+
+getusuario(){
+  return this.authService.currentUserSig();
+}
+
   agrAlCarrito(producto:Producto){
     if(producto.id===18){
       this.carritoService.setCartLastCart();

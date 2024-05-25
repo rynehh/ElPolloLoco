@@ -32,6 +32,7 @@ export class RegistroComponent implements OnInit{
   RedSig(){
     this.router.navigate(['signin']);
   }
+  errorMessage: string|null =null;
   resgister(){
     this.isRegister=true;
     this.authService.register({
@@ -43,7 +44,8 @@ export class RegistroComponent implements OnInit{
       this.router.navigate(['signin']);
     },
      error:(err) => {
-     this.isRegister=false;
+      this.errorMessage="Fallo en el registro";
+      this.isRegister=false;
     },
    });
   }

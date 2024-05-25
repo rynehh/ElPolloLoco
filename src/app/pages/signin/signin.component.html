@@ -3,7 +3,11 @@
     <div class="logo-container">
         <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
     </div>
-
+    @if(errorMessage){
+        <div>
+        {{errorMessage}}
+        </div>
+    }
     <form [formGroup]="form">
         <h1>Inicia Sesión con tu cuenta</h1>
             <mat-form-field >

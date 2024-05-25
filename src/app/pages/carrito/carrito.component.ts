@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../producto.model';
 import { CarritoService } from '../carrito.service';
 import { data } from 'jquery';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-carrito',
@@ -13,7 +14,10 @@ export class CarritoComponent implements OnInit {
   items: Producto[] = [];
   total:number=0;
   lastcart:Producto[] = [];
-  constructor(private carritoService: CarritoService) {}
+  aus=inject(AuthenticationService);
+  constructor(private carritoService: CarritoService, private router: Router) {
+
+  }
 
   ngOnInit(): void {
     this.carritoService.cartItems$.subscribe(data => {
@@ -38,9 +42,15 @@ export class CarritoComponent implements OnInit {
 
     this.total=subs;
   }
-
+ 
   cleananset(){
-    this.carritoService.clearCart();
+    this.aus.user$.subscribe(user=>{
+      if(user?.displayName!=null){
+        this.carritoService.clearCart();
+      } else{
+        this.router.navigate(['signin']);
+      }
+    });
   }
 
   qtyChange(event: any, itemId: number,itemqty:number){

@@ -1,33 +1,41 @@
-import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { Injectable, inject, signal } from '@angular/core';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
+import { UserInterface } from '../user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  firebaseAuth= inject(Auth);
+  user$=user(this.firebaseAuth);
+  currentUserSig=signal<UserInterface|null|undefined>(undefined)
 
-firebaseAuth = inject(Auth)
+  constructor() {}
 
+  register(params: Register): Observable<void> {
+    return from(createUserWithEmailAndPassword(this.firebaseAuth, params.email, params.password)
+      .then(response => updateProfile(response.user, { displayName: params.username })));
+  }
 
-  register(params: Register): Observable<void>{
-    const promise= createUserWithEmailAndPassword(this.firebaseAuth,params.email,params.password).then(response=>updateProfile(response.user,{displayName: params.username}))
+  signIn(params: SignIn): Observable<void> {
+    return from(signInWithEmailAndPassword(this.firebaseAuth, params.email, params.password).then(() => {}));
+  }
+
+  logout():Observable<void>{
+    const promise= signOut(this.firebaseAuth);
     return from(promise);
   }
 
-  signIn(params: SignIn): Observable<void>{
-    const promise = signInWithEmailAndPassword(this.firebaseAuth,params.email,params.password).then(()=>{})
-    return from(promise);
-  }
 }
 
-type SignIn={
-  email:string;
-  password:string;
+type SignIn = {
+  email: string;
+  password: string;
 }
 
-type Register={
-  email:string;
+type Register = {
+  email: string;
   username: string;
-  password:string;
+  password: string;
 }
