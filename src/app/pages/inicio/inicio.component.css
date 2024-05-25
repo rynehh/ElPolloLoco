@@ -72,6 +72,18 @@ h3{
     margin: 10px auto;
 }
 
+.menu-producto {
+    font-family: 'Saeada';
+    height: 440px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    margin: 10px auto;
+}
+
+
 .vermas {
     background-color: transparent;
     color: black;

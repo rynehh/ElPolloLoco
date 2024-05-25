@@ -31,7 +31,7 @@
             <a id=signin class="nav-link" href="/signin">Iniciar Sesión</a>
           </li>
           <li class="nav-item">
-            <a id=carro class="nav-link" href="/carrito">Carrito</a>
+            <a id=carro class="nav-link" href="/carrito">Carrito ({{itemInCart}})</a>
           </li>
         </ul>
       </div>
@@ -54,7 +54,7 @@
 <h1 id=menu class="menu">Menú</h1>
 <div class="container">
     <div class="row">
-      <div class="col-md-3" *ngFor="let section of menuSections">
+      <div class="col-md-4" *ngFor="let section of menuSections">
         <div class="menu-item">
           <h3>{{ section.title }}</h3>
           <img [src]="section.imageUrl" alt="{{ section.title }}" class="menu-image">
@@ -63,4 +63,20 @@
         </div>
       </div>
     </div>
+</div>
+
+<br>
+<h1 id=menu class="menu">Productos</h1>
+<div class="container" id="Productos">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos">
+      <div class="menu-producto">
+        <h3>{{ producto.name }}</h3>
+        <img [src]="producto.imgUrl" alt="{{ producto.name }}" class="menu-image">
+        <h4>{{ producto.desc }}</h4>
+        <p>${{ producto.price }}</p>
+        <button type="button" class="btn btn-primary vermas" (click)="agrAlCarrito(producto)">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import introJs from 'intro.js'; 
 import $ from 'jquery'; 
-
+import { Producto } from '../producto.model';
+import{ ProductoService } from '../producto.service';
+import{ CarritoService } from '../carrito.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -9,8 +11,17 @@ import $ from 'jquery';
   ]
 })
 export class InicioComponent implements OnInit {
+  productos:Producto[]=[];
+  itemInCart:number=0;
+  constructor(private productoService:ProductoService, private carritoService:CarritoService){}
 
   ngOnInit(): void {
+    this.productos=this.productoService.getProductos();
+    this.carritoService.cartItems.subscribe(d=>{
+      this.itemInCart=d.length;
+         console.log(d);
+         console.log(this.itemInCart);
+        });
 
     $(document).ready(function(){
 
@@ -44,13 +55,17 @@ export class InicioComponent implements OnInit {
     $("#buttoncol").click(function(){
       $("#navbarCollapse").slideToggle("slow");
     });
-  
-  });
     
-  
-  }
 
-  
+
+  });
+
+
+  }
+   
+  agrAlCarrito(producto:Producto){
+    this.carritoService.addItem(producto);
+  }
   menuSections = [
     { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png' },
     { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png' },
