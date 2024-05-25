@@ -16,13 +16,13 @@ export class InicioComponent implements OnInit {
   constructor(private productoService:ProductoService, private carritoService:CarritoService){}
 
   ngOnInit(): void {
-    this.productos=this.productoService.getProductos();
+
     this.carritoService.cartItems$.subscribe(d=>{
       this.itemInCart=d.length;
          console.log(d);
          console.log(this.itemInCart);
         });
-
+    this.productos=this.productoService.getProductos();
     $(document).ready(function(){
 
     introJs().setOptions({
@@ -64,7 +64,11 @@ export class InicioComponent implements OnInit {
   }
    
   agrAlCarrito(producto:Producto){
-    this.carritoService.addItem(producto);
+    if(producto.id===18){
+      this.carritoService.setCartLastCart();
+    }else{
+      this.carritoService.addItem(producto);
+    }
   }
   menuSections = [
     { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png' },

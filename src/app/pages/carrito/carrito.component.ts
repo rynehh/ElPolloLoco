@@ -12,12 +12,16 @@ import { data } from 'jquery';
 export class CarritoComponent implements OnInit {
   items: Producto[] = [];
   total:number=0;
+  lastcart:Producto[] = [];
   constructor(private carritoService: CarritoService) {}
 
   ngOnInit(): void {
     this.carritoService.cartItems$.subscribe(data => {
       this.items = data;
     });
+    this.carritoService.lastCart$.subscribe(ldata=>{
+      this.lastcart=ldata;
+    })
     this.getTotal();
   }
 
@@ -33,6 +37,10 @@ export class CarritoComponent implements OnInit {
       subs+=item.price*item.qty;
 
     this.total=subs;
+  }
+
+  cleananset(){
+    this.carritoService.clearCart();
   }
 
   qtyChange(event: any, itemId: number,itemqty:number){

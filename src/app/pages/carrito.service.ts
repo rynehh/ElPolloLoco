@@ -7,10 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CarritoService {
   private cartItems = new BehaviorSubject<Producto[]>([]);
+  private lastCart = new BehaviorSubject<Producto[]>([]);
   cartItems$ = this.cartItems.asObservable(); // Observable para que otros componentes puedan suscribirse
-
+  lastCart$=this.lastCart.asObservable();
   constructor() {
     this.loadCart();
+    this.loadLastCart();
   }
 
   // Cargar el carrito desde localStorage al iniciar el servicio
@@ -28,6 +30,11 @@ export class CarritoService {
   private syncCartItems(newCart: Producto[]) {
     this.cartItems.next(newCart);
     localStorage.setItem('carrito', JSON.stringify(newCart));
+  }
+
+  private setLastCart(newCart: Producto[]) {
+    this.cartItems.next(newCart);
+    localStorage.setItem('ultimoCarrito', JSON.stringify(newCart));
   }
 
   // Obtener el carrito actual
@@ -69,7 +76,26 @@ export class CarritoService {
 
   // Limpiar el carrito
   clearCart() {
+    this.setLastCart( this.getCartItems());
     this.syncCartItems([]);
+  }
+
+  private loadLastCart() {
+    const ls = localStorage.getItem('ultimoCarrito');
+    if (ls) {
+      const parsedLS: Producto[] = JSON.parse(ls);
+      if (Array.isArray(parsedLS)) {
+        this.lastCart.next(parsedLS);
+      }
+    }
+  }
+
+  getLastCart(): Producto[] {
+    return this.lastCart.getValue();
+  }
+
+  setCartLastCart(){
+    this.syncCartItems(this.getLastCart())
   }
 
 }

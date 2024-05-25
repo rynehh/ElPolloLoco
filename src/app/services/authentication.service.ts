@@ -9,6 +9,7 @@ export class AuthenticationService {
 
 firebaseAuth = inject(Auth)
 
+
   register(params: Register): Observable<void>{
     const promise= createUserWithEmailAndPassword(this.firebaseAuth,params.email,params.password).then(response=>updateProfile(response.user,{displayName: params.username}))
     return from(promise);

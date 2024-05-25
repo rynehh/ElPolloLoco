@@ -5,7 +5,7 @@ import { Producto } from './producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
-productos:Producto[]=[
+  productos:Producto[]=[
   new Producto(1,'Un Pollo Loco',
   '8 piezas, incluye salsas, totopos y tortillas',
   312,
@@ -115,7 +115,6 @@ productos:Producto[]=[
   'https://www.elpolloloco.com.mx/wp-content/uploads/2021/06/pl-polloentero.png'
   ),
 ]
-  constructor() { }
 
   getProduct(id:number){
     return this.productos.find(producto=>
