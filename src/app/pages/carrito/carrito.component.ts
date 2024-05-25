@@ -47,6 +47,7 @@ export class CarritoComponent implements OnInit {
     this.aus.user$.subscribe(user=>{
       if(user?.displayName!=null){
         this.carritoService.clearCart();
+        //trigger de correo
       } else{
         this.router.navigate(['signin']);
       }

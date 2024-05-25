@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
   productos:Producto[]=[];
   itemInCart:number=0;
   aus=inject(AuthenticationService);
+  currentCategory: string | null = null;
   constructor(private productoService:ProductoService, private carritoService:CarritoService, private authService: AuthenticationService){}
 
   ngOnInit(): void {
@@ -70,6 +71,49 @@ export class InicioComponent implements OnInit {
       });
     });
   }
+  ngAfterViewInit(): void {
+    $(document).ready(() => {
+      $('.vermas').on('click', (event) => {
+        const category = $(event.currentTarget).siblings('input[name="categoria"]').val() as string | undefined;
+        if (category === undefined) {
+          this.currentCategory = null;
+        } else if (this.currentCategory === category) {
+          this.currentCategory = null;
+          $('.menu-producto').parent().show();
+        } else {
+          this.currentCategory = category;
+          $('.menu-producto').parent().show();
+          $('.menu-producto').parent().filter(function() {
+            return $(this).find('input[name="categoria"]').val() !== category;
+          }).hide();
+
+          // Desplazar suavemente a la sección de productos
+          $('html, body').animate({
+            scrollTop: $('#productos').offset()?.top
+          }, 100);
+        }
+
+     
+      });
+         
+      $("#menunav").click(function(event) {
+        event.preventDefault();
+        var menuElement = $("#menu");
+        if (menuElement && menuElement.length > 0) {
+          var menuPosition = $('#menu').offset()?.top
+          if(menuPosition==undefined)
+            menuPosition=0;
+
+          var scrollToPosition = menuPosition - 150;
+            // Desplazar suavemente la página hasta la posición del menú
+            $("html, body").animate({
+                scrollTop: scrollToPosition
+            }, 100); // El número 1000 es la duración en milisegundos del desplazamiento (1 segundo)
+        }
+     });
+    });
+
+  }
    
 logout(){
   console.log("entre a logout");
@@ -88,11 +132,11 @@ getusuario(){
     }
   }
   menuSections = [
-    { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png' },
-    { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png' },
-    { title: 'Complementos', description: 'Para disfrutarse con tu pollo', imageUrl: '/assets/imagenes/comp.png' },
-    { title: 'Bebidas', description: 'Refréscate con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png' },
-    { title: 'Postres', description: '¡Acompáñalo con un postre!', imageUrl: '/assets/imagenes/postre.png' },
-    { title: '¡Tu último pedido!', description: '¿Disfrutaste tu última comida? ¡Vuelve a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' }
+    { title: '¡Tu último pedido!', description: '¿Disfrutaste tu última comida? ¡Vuelve a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' ,category:"UP"},
+    { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png', category:"Pollo" },
+    { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png', category:"Combos"},
+    { title: 'Complementos', description: 'Para disfrutarse con tu pollo', imageUrl: '/assets/imagenes/comp.png',category:"Complementos" },
+    { title: 'Bebidas', description: 'Refréscate con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png',category:"Bebidas" },
+    { title: 'Postres', description: '¡Acompáñalo con un postre!', imageUrl: '/assets/imagenes/postre.png',category:"Postres" }
   ];
 }

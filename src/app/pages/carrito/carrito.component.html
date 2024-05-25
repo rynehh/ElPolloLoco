@@ -7,7 +7,7 @@
 
             <div class="empty" *ngIf="items.length<1">
               <div class="info">
-                  <h2>No tienes ningun producto en tu carrito.</h2>
+                  <h1>Sin elementos en el carrito.</h1>
                   <a href="#!" class="text-body"><i
                     class="fas fa-long-arrow-alt-left me-2"></i>Regresar</a>
               </div>
@@ -24,8 +24,8 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p class="mb-1">Tu carrito</p>
-                    <p class="mb-0">Tienes {{items.length}} elementos en tu carrito</p>
+                    <p class="mb-1">Carrito</p>
+                    <p class="mb-0">Elementos en el carrito: {{items.length}} </p>
                   </div>
                   <div>
                     
@@ -127,7 +127,7 @@
                     <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg" (click)="cleananset()">
                       <div class="d-flex justify-content-between">
                         
-                        <span>Proceder con la compra<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span>Pagar<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                       </div>
                     </button>
 
