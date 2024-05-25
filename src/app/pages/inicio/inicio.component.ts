@@ -17,7 +17,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.productos=this.productoService.getProductos();
-    this.carritoService.cartItems.subscribe(d=>{
+    this.carritoService.cartItems$.subscribe(d=>{
       this.itemInCart=d.length;
          console.log(d);
          console.log(this.itemInCart);

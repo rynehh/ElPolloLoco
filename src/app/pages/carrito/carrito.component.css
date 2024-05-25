@@ -1,7 +1,8 @@
 
   @media (min-width: 1025px) {
     .h-custom {
-    height: 100vh !important;
+    height: auto !important;
+    min-height: 100vh !important;
     }
 }
 
@@ -77,4 +78,8 @@ button{
     src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
     font-weight: normal;
     font-style: normal;
+}
+
+.qty{
+    width: 50px!important;
 }

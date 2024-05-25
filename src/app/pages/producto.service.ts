@@ -50,7 +50,7 @@ productos:Producto[]=[
   ),
   new Producto(8,'Combo Familiar 16 Pz',
   '16 piezas de pollo, 6 complementos, incluye salsas, totopos y tortillas',
-  573,
+  775,
   1,
   'https://www.elpolloloco.com.mx/wp-content/uploads/2022/03/16-1.png'
   ),
@@ -116,7 +116,7 @@ productos:Producto[]=[
   ),
 ]
   constructor() { }
-  
+
   getProduct(id:number){
     return this.productos.find(producto=>
       producto.id===id);
