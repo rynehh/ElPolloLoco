@@ -4,21 +4,19 @@
         <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
     </div>
     @if(errorMessage){
-        <div>
+        <div  class="error">
         {{errorMessage}}
         </div>
     }
     <form [formGroup]="form">
-        <h1>Inicia Sesión con tu cuenta</h1>
+        <h1>Iniciar sesión</h1>
             <mat-form-field >
             <mat-label>Email</mat-label>
             <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
             @if (form.get('email') && !form.hasError('required')) {
                 <mat-error>Correo inválido</mat-error>
             }
-
         </mat-form-field>
-
         <mat-form-field >
             <mat-label>Contraseña</mat-label>
             <input type="password" matInput placeholder="Contraseña" formControlName="password">
@@ -37,10 +35,12 @@
         *ngIf="!isLoggingIn">
             Iniciar Sesión
         </button>
+        <span *ngIf="!form.valid">Este botón se habilitará</span>
+        <span *ngIf="!form.valid"> cuando todos los campos estén llenos</span>
         <button mat-raised-button color="warn" class="button-loader" *ngIf="isLoggingIn">
             <mat-spinner color="accent" diameter="20"></mat-spinner>
         </button>
-        <button mat-stroked-button color="warn" (click)="RedReg()">Registrarse</button>
+        <button mat-stroked-button color="warn" (click)="RedReg()">Crear cuenta</button>
 
     </form>
 </main>

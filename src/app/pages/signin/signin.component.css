@@ -21,7 +21,7 @@ form{
     align-items: center;
     flex-direction: column;
     font-family: 'Saeada';
-    
+    width: 400px; 
 
     button,
     mat-form-field{
@@ -70,4 +70,28 @@ h1{
     transform: rotate(-5deg);
     width: 150px;
     
+}
+
+@media (max-width: 1200px) {
+    main {
+        padding: 20px; 
+    }
+
+    form {
+        max-width: 310px; 
+    }
+
+    .logo {
+        width: 100px; 
+    }
+}
+
+
+span{
+    color: rgb(197, 197, 197)
+    
+}
+
+.error{
+    color: red;
 }

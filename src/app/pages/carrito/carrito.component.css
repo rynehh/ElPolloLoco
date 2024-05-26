@@ -5,72 +5,40 @@
     min-height: 100vh !important;
     }
 }
+form{
+    button,
+    mat-form-field{
+        width: -webkit-fill-available;
+    }
 
-h5{
+    mat-form-field{
+        min-height: calc(1.5em + 1rem + calc(var(--bs-border-width)* 2));
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
+        border-radius: var(--bs-border-radius-lg);
+    }
+
+    button{
+        font-family: 'Saeada';
+        src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
+        font-weight: normal;
+        font-style: normal;       
+    }
+    
+    .aligned-to-right{
+        text-align: right;
+        width: 100%;
+    }
+}
+
+h5,h4,h3,h2,h1,p,label,button{
     font-family: 'Saeada';
     src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
-h4{
 
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-h3{
-
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-
-
-}
-
-h2{
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-h1{
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-p{
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-label{
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-button{
-
-    font-family: 'Saeada';
-    src: url('/assets/fuentes/LTSaeada-Regular.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
 ::placeholder{
 
@@ -82,4 +50,81 @@ button{
 
 .qty{
     width: 50px!important;
+}
+
+#pagar{
+    background-color: #fff200!important;
+}
+
+.navbar {
+    position: fixed;
+    top: 0; 
+    width: 100%; 
+    z-index: 1000;
+    font-family: 'Saeada';
+    font-size: x-large;
+    background: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-container {
+    position: absolute; 
+    padding: 10px; 
+}
+.logo {
+    width: 130px; 
+    transform: translateY(60%) rotate(-5deg); 
+}
+
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 12px 1vw; 
+}
+
+.white-text {
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: yellow; 
+}
+
+ 
+@media (max-width: 1200px) {
+    .navbar {
+        font-size:smaller; /* Tamaño de fuente relativo */
+        padding: 5px;
+    }
+
+    .logo img {
+        width: 50px; /* Tamaño de logo relativo */
+    }
+
+    .links a {
+        margin: 0 1vw; /* Espaciado flexible */
+    }
+
+    .actions button {
+        font-size: 3vw; /* Tamaño de fuente relativo */
+        margin: 5px 1vw; /* Espaciado flexible */
+    }
+    
+}
+
+.mat-mdc-form-field-error {
+    display: block;
+    color: #ffffff;
+}
+
+.mat-mdc-form-field-infix {
+    height: 20px!important;
 }

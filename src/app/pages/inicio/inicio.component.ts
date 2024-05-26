@@ -79,7 +79,6 @@ export class InicioComponent implements OnInit {
       }
     });
 
-    
 
     $(document).ready(function(){
       $("#buttoncol").click(function(){

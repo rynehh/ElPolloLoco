@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import $ from 'jquery'; 
 
 @Component({
   selector: 'app-registro',
@@ -29,6 +30,7 @@ export class RegistroComponent implements OnInit{
       validators: this.passwordMatchValidator
     });
   }
+
   RedSig(){
     this.router.navigate(['signin']);
   }
@@ -41,14 +43,17 @@ export class RegistroComponent implements OnInit{
      password: this.form.value.password
     }).subscribe({
      next:() => {
+      alert("Registro exitoso");
       this.router.navigate(['signin']);
     },
      error:(err) => {
-      this.errorMessage="Fallo en el registro";
+      this.errorMessage="Registro fallido";
       this.isRegister=false;
     },
    });
   }
+
+
 
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
@@ -59,4 +64,9 @@ export class RegistroComponent implements OnInit{
       formGroup.get('password2')?.setErrors(null);
     }
   }
+
+
+
 }
+
+

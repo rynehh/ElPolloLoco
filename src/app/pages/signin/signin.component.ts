@@ -36,12 +36,12 @@ export class SigninComponent implements OnInit {
     password: this.form.value.password
    }).subscribe({
     next:() => {
+      alert("Inicio exitoso");
       this.router.navigate(['inicio']);
    },
     error:(err) => {
-      this.errorMessage=err.Code;
+    this.errorMessage="Inicio fallido"
     this.isLoggingIn=false;
-
    },
   });
   }

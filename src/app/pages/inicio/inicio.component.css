@@ -58,6 +58,7 @@ h1{
 
 h3{
     font-family: 'Saeada';
+    text-align: center;
 }
 
 
@@ -130,4 +131,29 @@ h3{
         font-size: 3vw; /* Tamaño de fuente relativo */
         margin: 5px 1vw; /* Espaciado flexible */
     }
+    
+}
+
+#first-item,#UP{
+    border: 4px solid  #ffa500;
+    background-color: #b4b4b4; /* Cambia esto al diseño que desees */
+}
+#first-item > .vermas{
+
+    background-color: #ffa500;/* Cambia esto al diseño que desees */
+}
+
+#first-item > .vermas:hover {
+
+    background-color: #bb7a02;
+}
+
+#UP > .agregar{
+
+    background-color: #ffa500;
+}
+
+#UP > .agregar:hover {
+
+    background-color: #bb7a02;
 }

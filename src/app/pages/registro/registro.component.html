@@ -4,13 +4,13 @@
         <img src="/assets/imagenes/logo-menu.png" alt="Logo" class="logo">
     </div>
     @if(errorMessage){
-        <div>
+        <div class="error">
         {{errorMessage}}
         </div>
     }
 
     <form [formGroup]="form">
-        <h1>¡Regístrate con los expertos en Pollos!</h1>
+        <h1>Crear cuenta</h1>
             <mat-form-field >
             <mat-label>Email</mat-label>
             <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
@@ -46,9 +46,10 @@
         </mat-form-field>
         
 
-        <button mat-raised-button color="warn" [disabled]="!form.valid" (click)="resgister()"  *ngIf="!isRegister">
-            Crear Cuenta
+        <button id="registerButton" mat-raised-button color="warn" [disabled]="!form.valid" (click)="resgister()" *ngIf="!isRegister">
+        Crear Cuenta
         </button>
+        <span *ngIf="!form.valid">Este botón se habilitará cuando todos los campos estén llenos</span>
         <button mat-raised-button color="warn" class="button-loader" *ngIf="isRegister">
             <mat-spinner color="accent" diameter="20"></mat-spinner>
         </button>

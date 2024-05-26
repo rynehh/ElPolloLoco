@@ -14,7 +14,7 @@ form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    width: 400px; 
     button,
     mat-form-field{
         width: -webkit-fill-available;
@@ -71,10 +71,20 @@ h1{
     }
 
     form {
-        max-width: 400px; 
+        max-width: 310px; 
     }
 
     .logo {
         width: 100px; 
     }
 }
+
+span{
+    color: rgb(197, 197, 197)
+}
+
+.error{
+    color: red;
+}
+
+

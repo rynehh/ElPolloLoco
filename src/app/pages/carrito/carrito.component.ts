@@ -2,9 +2,10 @@ import { Component, OnInit, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../producto.model';
 import { CarritoService } from '../carrito.service';
-import { data } from 'jquery';
+import $ from 'jquery'; 
 import { AuthenticationService } from '../../services/authentication.service';
 import { Carritos } from '../carritos.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-carrito',
@@ -12,22 +13,41 @@ import { Carritos } from '../carritos.model';
   styleUrl: './carrito.component.css'
 })
 export class CarritoComponent implements OnInit {
+  form!: FormGroup;
   items: Producto[] = [];
   total:number=0;
+  itemInCart:number=0;
   lastcart:Producto[] = [];
   aus=inject(AuthenticationService);
-  constructor(private carritoService: CarritoService, private router: Router,private authService: AuthenticationService) {
+  constructor(private carritoService: CarritoService, private router: Router,private authService: AuthenticationService,  private formbuilder: FormBuilder) {
+    
   }
 
   ngOnInit(): void {
-    this.carritoService.cartItems$.subscribe(data => {
-      this.items = data;
+    this.form = this.formbuilder.group({
+      calle: ['', [Validators.required]],
+      colonia: ['', [Validators.required]], 
+      ciudad:  ['', [Validators.required]],
+      cp: ['', [Validators.required]],
+      nombreP: ['', [Validators.required]],
+      numT: ['', [Validators.required]], 
+      exp:  ['', [Validators.required]],
+      cvv: ['', [Validators.required]],
     });
     this.carritoService.lastCart$.subscribe(ldata=>{
       this.lastcart=ldata;
+      this.getTotal();
+    });
+    this.carritoService.cartItems$.subscribe(data => {
+      this.items = data;
+      this.getTotal();
+    });
+    this.aus.user$.subscribe(user=>{
+      if (user != null) {
+        this.actualizarCarritos();
+      }
     });
     this.getTotal();
-    this.actualizarCarritos();
   }
 
   onDelete(id:number){
@@ -43,7 +63,6 @@ export class CarritoComponent implements OnInit {
       subs+=item.price*item.qty;
 
     this.total=subs;
-    this.actualizarCarritos();
   }
  
   cleananset(){
@@ -58,6 +77,7 @@ export class CarritoComponent implements OnInit {
     });
   }
 
+  
   qtyChange(event: any, itemId: number,itemqty:number){
     const newQty = event.target.value;
     const previousQty = itemqty;
@@ -75,6 +95,18 @@ export class CarritoComponent implements OnInit {
     this.getTotal();
   }
 
+
+  getusuario(){
+    return this.authService.currentUserSig();
+  }
+
+  logout(): void {
+    console.log("Entering logout");
+    this.actualizarCarritos();
+    this.authService.logout();
+
+  }
+
     actualizarCarritos(){
       const user=this.authService.currentUserSig();
       if(user){
@@ -82,6 +114,10 @@ export class CarritoComponent implements OnInit {
         this.carritoService.addCarrito(car);
       }
     }
-  
-
 }
+
+$(document).ready(function(){
+  $("#buttoncol").click(function(){
+    $("#navbarCollapse").slideToggle("slow");
+  });
+});
