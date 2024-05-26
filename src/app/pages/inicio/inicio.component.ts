@@ -164,7 +164,7 @@ getusuario(){
     }
   }
   menuSections = [
-    { title: 'Último pedido', description: '¿Disfrutó su última comida? ¡Vuelva a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' ,category:"UP"},
+    { title: 'Último pedido', description: '¿Disfrutó su última comida? ¡Vuelva a ordenarla!', imageUrl: '/assets/imagenes/bolsa.png' ,category:"UP"},
     { title: 'Pollos', description: '¡Disfrute de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png', category:"Pollo" },
     { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png', category:"Combos"},
     { title: 'Complementos', description: 'Para disfrutarse con su pollo', imageUrl: '/assets/imagenes/comp.png',category:"Complementos" },

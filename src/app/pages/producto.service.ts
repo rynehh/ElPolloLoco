@@ -129,7 +129,7 @@ export class ProductoService {
   'El pedido realizado más recientemente.',
   0,
   1,
-  'https://www.elpolloloco.com.mx/wp-content/uploads/2021/06/pl-polloentero.png',
+  '/assets/imagenes/bolsa.png',
   "UP"
   ),
 ]
