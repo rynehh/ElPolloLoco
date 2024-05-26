@@ -124,7 +124,7 @@
                             placeholder="Calle" formControlName="calle"/>
                         </div>
                         @if (form.get('calle') && !form.hasError('required')) {
-                          <mat-error>Se requiere calle</mat-error>
+                          <mat-error>Se requiere calle.</mat-error>
                       }
                       </mat-form-field>
 
@@ -135,7 +135,7 @@
                           placeholder="Colonia" formControlName="colonia"/>
                       </div>
                       @if (form.get('colonia') && !form.hasError('required')) {
-                        <mat-error>Se requiere colonia</mat-error>
+                        <mat-error>Se requiere colonia.</mat-error>
                     }
                     </mat-form-field>
 
@@ -144,7 +144,7 @@
                         placeholder="Ciudad" formControlName="ciudad"/>
                     </div>
                     @if (form.get('colonia') && !form.hasError('required')) {
-                      <mat-error>Se requiere ciudad</mat-error>
+                      <mat-error>Se requiere ciudad.</mat-error>
                   }
                   </mat-form-field>
                       
@@ -153,7 +153,7 @@
                       placeholder="Código Postal" minlength="5" maxlength="5" pattern="\d{5}" formControlName="cp"/>
                     </div>
                     @if (form.get('cp') && !form.hasError('required')) {
-                      <mat-error>Se requiere código postal</mat-error>
+                      <mat-error>Se requiere código postal.</mat-error>
                   }
                     </mat-form-field>
                      
@@ -165,7 +165,7 @@
                             placeholder="Nombre del propietario de la tarjeta" formControlName="nombreP"/>
                         </div>
                         @if (form.get('nombreP') && !form.hasError('required')) {
-                          <mat-error>Se requiere nombre del propietario de la tarjeta</mat-error>
+                          <mat-error>Se requiere nombre del propietario de la tarjeta.</mat-error>
                       }
                       </mat-form-field>
 
@@ -174,7 +174,7 @@
                           placeholder="Número de tarjeta" minlength="16" maxlength="16" formControlName="numT"/>
                       </div>
                       @if (form.get('numT') && !form.hasError('required')) {
-                        <mat-error>Se requiere número de la tarjeta</mat-error>
+                        <mat-error>Se requiere número de la tarjeta.</mat-error>
                     }
                     </mat-form-field>
 
@@ -186,7 +186,7 @@
                           placeholder="MM/AA" size="5" id="expi" minlength="5" maxlength="5" pattern="\d{2}/\d{2}" formControlName="exp"/>
                       </div>
                       @if (form.get('exp') && !form.hasError('required')) {
-                        <mat-error>Se requiere fecha de expiración</mat-error>
+                        <mat-error>Se requiere fecha de expiración.</mat-error>
                     }
                     </mat-form-field>
                       
@@ -198,7 +198,7 @@
                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" pattern="\d{3}" formControlName="cvv"/>
                           </div>
                           @if (form.get('cvv') && !form.hasError('required')) {
-                            <mat-error>Se requiere CVV</mat-error>
+                            <mat-error>Se requiere CVV.</mat-error>
                         }</mat-form-field>
                           
                         </div>
@@ -216,7 +216,7 @@
                       </div>
   
                       <div class="d-flex justify-content-between mb-4">
-                        <p class="mb-2">Total</p>
+                        <p class="mb-2">Total (IVA incluido)</p>
                         <p class="mb-2">${{((total + 50) * 1.16).toFixed(2) }}</p>
                       </div>
   

@@ -164,11 +164,11 @@ getusuario(){
     }
   }
   menuSections = [
-    { title: '¡Tu último pedido!', description: '¿Disfrutaste tu última comida? ¡Vuelve a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' ,category:"UP"},
-    { title: 'Pollos', description: '¡Disfruta de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png', category:"Pollo" },
+    { title: 'Último pedido', description: '¿Disfrutó su última comida? ¡Vuelva a ordenarla!', imageUrl: '/assets/imagenes/pollo.png' ,category:"UP"},
+    { title: 'Pollos', description: '¡Disfrute de un Pollo Loco!', imageUrl: '/assets/imagenes/pollo.png', category:"Pollo" },
     { title: 'Combos', description: '¡Los mejores combos para disfrutar!', imageUrl: '/assets/imagenes/combo.png', category:"Combos"},
-    { title: 'Complementos', description: 'Para disfrutarse con tu pollo', imageUrl: '/assets/imagenes/comp.png',category:"Complementos" },
-    { title: 'Bebidas', description: 'Refréscate con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png',category:"Bebidas" },
-    { title: 'Postres', description: '¡Acompáñalo con un postre!', imageUrl: '/assets/imagenes/postre.png',category:"Postres" }
+    { title: 'Complementos', description: 'Para disfrutarse con su pollo', imageUrl: '/assets/imagenes/comp.png',category:"Complementos" },
+    { title: 'Bebidas', description: 'Refrésquese con las mejores bebidas', imageUrl: '/assets/imagenes/soda.png',category:"Bebidas" },
+    { title: 'Postres', description: '¡Acompáñelo con un postre!', imageUrl: '/assets/imagenes/postre.png',category:"Postres" }
   ];
 }
