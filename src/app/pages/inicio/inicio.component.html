@@ -19,7 +19,7 @@
             <a id=menunav class="nav-link" href="">Menú</a>
           </li>
           <li class="nav-item">
-            <a id=promos class="nav-link" href="/inicio">Bolsa de Trabajo</a>
+            <a id=bolsa class="nav-link" href="/inicio">Bolsa de Trabajo</a>
           </li>
           <li class="nav-item">
             <a id=sucur class="nav-link" href="/inicio">Sucursales</a>
@@ -37,9 +37,16 @@
               <a id=signin class="nav-link" (click)="logout()" href="#">Cerrar Sesión</a>
             </li>
           }
+          @if(getusuario()==null){
+            <li class="nav-item">
+              <a id=carro class="nav-link" href="/signin">Carrito ({{itemInCart}})</a>
+            </li>
+          }
+          @if(getusuario()){
           <li class="nav-item">
             <a id=carro class="nav-link" href="/carrito">Carrito ({{itemInCart}})</a>
           </li>
+        }
         </ul>
       </div>
     </div>
@@ -51,9 +58,9 @@
 
 <div class="main-content" style="margin-top: 80px;"> 
     <carousel>
-    <slide>
-        <img src="/assets/imagenes/carrusel3.jpg" alt="Imagen 1">
-    </slide>
+    <slide> <img src="/assets/imagenes/carrusel3.jpg" alt="Imagen 1"></slide>
+    <slide> <img src="/assets/imagenes/ia.jpg" alt="Imagen 2"></slide>
+    <slide> <img src="https://www.elpolloloco.com.mx/wp-content/uploads/2024/05/banner-web-combos-1-scaled.jpg" alt="Imagen 3"></slide>
   </carousel>
 </div>
 <br>
@@ -86,7 +93,7 @@
         @if(producto.price!=0){
           <p>${{ producto.price }}</p>
         }
-        <button type="button" class="btn btn-primary vermas" (click)="agrAlCarrito(producto)">Agregar al carrito</button>
+        <button type="button" class="btn btn-primary agregar" (click)="agrAlCarrito(producto)">Agregar al carrito</button>
       </div>
     </div>
   </div>

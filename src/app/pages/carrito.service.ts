@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Producto } from './producto.model';
 import { BehaviorSubject } from 'rxjs';
+import { Carritos } from './carritos.model';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,23 +10,40 @@ import { BehaviorSubject } from 'rxjs';
 export class CarritoService {
   private cartItems = new BehaviorSubject<Producto[]>([]);
   private lastCart = new BehaviorSubject<Producto[]>([]);
+  private carritos= new BehaviorSubject<Carritos[]>([]);
   cartItems$ = this.cartItems.asObservable(); // Observable para que otros componentes puedan suscribirse
   lastCart$=this.lastCart.asObservable();
+  carritos$=this.carritos.asObservable();
+  aus=inject(AuthenticationService);
   constructor() {
+    this.loadCarritos();
     this.loadCart();
     this.loadLastCart();
   }
 
   // Cargar el carrito desde localStorage al iniciar el servicio
   private loadCart() {
-    const ls = localStorage.getItem('carrito');
+    this.aus.user$.subscribe(user=>{
+    const ls = localStorage.getItem('carritos');
     if (ls) {
-      const parsedLS: Producto[] = JSON.parse(ls);
-      if (Array.isArray(parsedLS)) {
-        this.cartItems.next(parsedLS);
+      if (user == null){
+        this.syncCartItems([]);
+      }else{
+        const currentCarts = this.getCarritos();
+        let exist: Carritos | undefined = currentCarts.find((item: Carritos) => item.email === user.email);
+        
+        if(exist){
+          const parsedLS: Producto[]=JSON.parse(exist.carrito);
+          if (Array.isArray(parsedLS)) {
+          this.cartItems.next(parsedLS);
+        }
+        }
       }
+      
     }
+  });
   }
+
 
   // Sincronizar el carrito con localStorage y BehaviorSubject
   private syncCartItems(newCart: Producto[]) {
@@ -33,7 +52,7 @@ export class CarritoService {
   }
 
   private setLastCart(newCart: Producto[]) {
-    this.cartItems.next(newCart);
+    this.lastCart.next(newCart);
     localStorage.setItem('ultimoCarrito', JSON.stringify(newCart));
   }
 
@@ -81,13 +100,25 @@ export class CarritoService {
   }
 
   private loadLastCart() {
-    const ls = localStorage.getItem('ultimoCarrito');
+    this.aus.user$.subscribe(user=>{
+    const ls = localStorage.getItem('carritos');
     if (ls) {
-      const parsedLS: Producto[] = JSON.parse(ls);
-      if (Array.isArray(parsedLS)) {
-        this.lastCart.next(parsedLS);
+      if (user == null){
+        this.setLastCart([]);
+      }else{
+        const currentCarts = this.getCarritos();
+        let exist: Carritos | undefined = currentCarts.find((item: Carritos) => item.email === user.email);
+        
+        if(exist){
+          const parsedLS: Producto[]=JSON.parse(exist.ultimoCarrito);
+          if (Array.isArray(parsedLS)) {
+          this.lastCart.next(parsedLS);
+        }
+        }
       }
+      
     }
+  });
   }
 
   getLastCart(): Producto[] {
@@ -97,5 +128,47 @@ export class CarritoService {
   setCartLastCart(){
     this.syncCartItems(this.getLastCart())
   }
+
+
+
+  //CARRITOS DE MULTIPLES USUARIOS
+  loadCarritos() {
+    const ls = localStorage.getItem('carritos');
+    if (ls) {
+      try {
+        const parsedLS: Carritos[] = JSON.parse(ls);
+        this.carritos.next(parsedLS);
+      } catch (error) {
+        console.error('Error al cargar carritos desde localStorage:', error);
+      }
+    }
+  }
+
+  getCarritos(): Carritos[] {
+    return this.carritos.getValue();
+  }
+
+  setCarritos(newCart: Carritos[]){
+      localStorage.setItem('carritos', JSON.stringify(newCart));
+  }
+
+  syncCarritos(newCarritos: Carritos[]) {
+    this.carritos.next(newCarritos);
+    localStorage.setItem('carritos', JSON.stringify(newCarritos));
+  }
+
+  addCarrito(Carrito: Carritos) {
+    const currentCarts = this.getCarritos();
+    let exist: Carritos | undefined = currentCarts.find((item: Carritos) => item.email === Carrito.email);
+
+    if (exist) {
+      exist.carrito=JSON.stringify(this.getCartItems());
+      exist.ultimoCarrito=JSON.stringify(this.getLastCart());
+    } else {
+      currentCarts.push(Carrito);
+    }
+    this.syncCarritos(currentCarts);
+  }
+
 
 }

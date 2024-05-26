@@ -23,7 +23,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-
     MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,

@@ -4,6 +4,7 @@ import { Producto } from '../producto.model';
 import { CarritoService } from '../carrito.service';
 import { data } from 'jquery';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Carritos } from '../carritos.model';
 
 @Component({
   selector: 'app-carrito',
@@ -15,8 +16,7 @@ export class CarritoComponent implements OnInit {
   total:number=0;
   lastcart:Producto[] = [];
   aus=inject(AuthenticationService);
-  constructor(private carritoService: CarritoService, private router: Router) {
-
+  constructor(private carritoService: CarritoService, private router: Router,private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -25,13 +25,15 @@ export class CarritoComponent implements OnInit {
     });
     this.carritoService.lastCart$.subscribe(ldata=>{
       this.lastcart=ldata;
-    })
+    });
     this.getTotal();
+    this.actualizarCarritos();
   }
 
   onDelete(id:number){
     this.carritoService.removeItem(id);
     this.getTotal();
+    this.actualizarCarritos();
   }
 
   getTotal(){
@@ -41,12 +43,14 @@ export class CarritoComponent implements OnInit {
       subs+=item.price*item.qty;
 
     this.total=subs;
+    this.actualizarCarritos();
   }
  
   cleananset(){
     this.aus.user$.subscribe(user=>{
       if(user?.displayName!=null){
         this.carritoService.clearCart();
+        this.actualizarCarritos();
         //trigger de correo
       } else{
         this.router.navigate(['signin']);
@@ -62,11 +66,22 @@ export class CarritoComponent implements OnInit {
     if (newQty < 1) {
       // Restaurar el valor anterior
       event.target.value = previousQty;
+      this.actualizarCarritos();
     } else {
       console.log('Nuevo valor de cantidad:', newQty);
       this.carritoService.updateItemQuantity(itemId,newQty);
-      // Realiza cualquier acción necesaria con el nuevo valor de cantidad y el ID del item
+      this.actualizarCarritos();
     }
     this.getTotal();
   }
+
+    actualizarCarritos(){
+      const user=this.authService.currentUserSig();
+      if(user){
+        const car=new Carritos(user.email,JSON.stringify(this.carritoService.getCartItems()), JSON.stringify(this.carritoService.getLastCart()));
+        this.carritoService.addCarrito(car);
+      }
+    }
+  
+
 }

@@ -95,6 +95,18 @@ h3{
     color: black;
 }
 
+.agregar {
+    background-color: transparent;
+    color: black;
+    border-color: black;
+}
+  
+.agregar:hover {
+    background-color: grey;
+    color: black;
+}
+
+
 .menu-image {
     max-width: 100%;
     height: 200px; margin-bottom: 10px;

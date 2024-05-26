@@ -5,6 +5,9 @@ import { Producto } from '../producto.model';
 import{ ProductoService } from '../producto.service';
 import{ CarritoService } from '../carrito.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Firestore, CollectionReference } from '@angular/fire/firestore'; // Correct Firestore imports
+import { addDoc,collection } from 'firebase/firestore';
+import { Carritos } from '../carritos.model';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -15,8 +18,10 @@ export class InicioComponent implements OnInit {
   productos:Producto[]=[];
   itemInCart:number=0;
   aus=inject(AuthenticationService);
+  fire:Firestore=inject(Firestore);
   currentCategory: string | null = null;
-  constructor(private productoService:ProductoService, private carritoService:CarritoService, private authService: AuthenticationService){}
+  constructor(private productoService:ProductoService, private carritoService:CarritoService, private authService: AuthenticationService){
+  }
 
   ngOnInit(): void {
 
@@ -45,13 +50,24 @@ export class InicioComponent implements OnInit {
               title: "👆",
               intro: "Haz clic aquí para ver nuestras sucursales."
             },{
-              element: document.querySelector('#promos') as HTMLElement,
+              element: document.querySelector('#bolsa') as HTMLElement,
               title: "👆",
-              intro: "Haz clic aquí para ver nuestras promociones."
-            },{
+              intro: "Haz clic aquí para ver nuestra bolsa de trabajo."
+            },
+            {
+              element: document.querySelector('#menunav') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para ver el menú."
+            },
+            {
+              element: document.querySelector('#inicio') as HTMLElement,
+              title: "👆",
+              intro: "Haz clic aquí para regresar al inicio."
+            },
+            {
               element: document.querySelector('#carro') as HTMLElement,
               title: "👆",
-              intro: "Haz clic aquí para ver el carrito de compra."
+              intro: "Haz clic aquí para ver el carrito de compra. Recuerda iniciar sesión"
             }]
       
           }).start();
@@ -71,6 +87,7 @@ export class InicioComponent implements OnInit {
       });
     });
   }
+
   ngAfterViewInit(): void {
     $(document).ready(() => {
       $('.vermas').on('click', (event) => {
@@ -114,21 +131,37 @@ export class InicioComponent implements OnInit {
     });
 
   }
-   
-logout(){
-  console.log("entre a logout");
-  this.authService.logout();
-}
+
+  logout(): void {
+    console.log("Entering logout");
+    this.actualizarCarritos();
+    this.authService.logout();
+
+  }
 
 getusuario(){
   return this.authService.currentUserSig();
 }
 
   agrAlCarrito(producto:Producto){
-    if(producto.id===18){
+    if(this.getusuario()){
+          if(producto.id===18){
       this.carritoService.setCartLastCart();
+      this.actualizarCarritos();
     }else{
       this.carritoService.addItem(producto);
+      this.actualizarCarritos();
+    }
+    }else{
+      alert("Favor de iniciar sesión");
+    }
+  }
+
+  actualizarCarritos(){
+    const user=this.authService.currentUserSig();
+    if(user){
+      const car=new Carritos(user.email,JSON.stringify(this.carritoService.getCartItems()), JSON.stringify(this.carritoService.getLastCart()));
+      this.carritoService.addCarrito(car);
     }
   }
   menuSections = [

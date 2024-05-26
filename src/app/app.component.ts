@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,7 +14,6 @@ import { AuthenticationService } from './services/authentication.service';
 
 export class AppComponent implements OnInit{
   authService=inject(AuthenticationService);
-
   ngOnInit(): void {
     this.authService.user$.subscribe(user=>{
       if(user){

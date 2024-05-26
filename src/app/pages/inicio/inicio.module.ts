@@ -10,6 +10,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Importa AngularFirestoreModule
+
 
 
 const routes: Routes = [
@@ -28,14 +30,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-
     MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     CarouselModule.forRoot(),
     ButtonsModule.forRoot(),
-    NgbCollapseModule
+    AngularFirestoreModule,
+    NgbCollapseModule,
   ]
 })
 export class InicioModule { 
