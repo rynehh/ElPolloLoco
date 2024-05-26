@@ -6,6 +6,12 @@ import $ from 'jquery';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Carritos } from '../carritos.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import emailjs from '@emailjs/browser';
+
+const templateParams = {
+  name: 'James',
+  notes: 'Check this out!',
+};
 
 @Component({
   selector: 'app-carrito',
@@ -17,7 +23,9 @@ export class CarritoComponent implements OnInit {
   items: Producto[] = [];
   total:number=0;
   itemInCart:number=0;
+  comprado:boolean=false;
   lastcart:Producto[] = [];
+
   aus=inject(AuthenticationService);
   constructor(private carritoService: CarritoService, private router: Router,private authService: AuthenticationService,  private formbuilder: FormBuilder) {
     
@@ -70,7 +78,8 @@ export class CarritoComponent implements OnInit {
       if(user?.displayName!=null){
         this.carritoService.clearCart();
         this.actualizarCarritos();
-        //trigger de correo
+        this.comprado=true;
+        this.send();
       } else{
         this.router.navigate(['signin']);
       }
@@ -104,7 +113,6 @@ export class CarritoComponent implements OnInit {
     console.log("Entering logout");
     this.actualizarCarritos();
     this.authService.logout();
-
   }
 
     actualizarCarritos(){
@@ -113,6 +121,20 @@ export class CarritoComponent implements OnInit {
         const car=new Carritos(user.email,JSON.stringify(this.carritoService.getCartItems()), JSON.stringify(this.carritoService.getLastCart()));
         this.carritoService.addCarrito(car);
       }
+    }
+    async send(){
+      this.aus.user$.subscribe(user=>{{
+        if(user){
+          emailjs.init("P-uxSj__P9s9qRIxZ");
+          let response  = emailjs.send("service_6603blb","template_95ytrc9",{
+            to_name: user.displayName,
+            to: user.email,
+            });
+            alert("Correo enviado");
+        }
+      }
+    });
+      
     }
 }
 

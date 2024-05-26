@@ -13,9 +13,9 @@ form{
 
     mat-form-field{
         min-height: calc(1.5em + 1rem + calc(var(--bs-border-width)* 2));
-        padding: .5rem 1rem;
         font-size: 1.25rem;
-        border-radius: var(--bs-border-radius-lg);
+        border-radius: 10%;
+        height: 100px;
     }
 
     button{
@@ -38,7 +38,10 @@ h5,h4,h3,h2,h1,p,label,button{
     font-style: normal;
 }
 
-
+.info h1{
+    font-size: larger;
+    text-align: center;
+}
 
 ::placeholder{
 
@@ -98,7 +101,9 @@ h5,h4,h3,h2,h1,p,label,button{
     color: yellow; 
 }
 
- 
+.gracias{
+    width: -webkit-fill-available;
+}
 @media (max-width: 1200px) {
     .navbar {
         font-size:smaller; /* Tamaño de fuente relativo */
@@ -125,6 +130,3 @@ h5,h4,h3,h2,h1,p,label,button{
     color: #ffffff;
 }
 
-.mat-mdc-form-field-infix {
-    height: 20px!important;
-}

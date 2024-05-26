@@ -38,11 +38,22 @@
         <div class="card">
           <div class="card-body p-4">
 
-            <div class="empty" *ngIf="items.length<1">
+            <div class="empty" *ngIf="items.length<1&&comprado==false">
               <div class="info">
                   <h1>Sin elementos en el carrito.</h1>
                   <a href="#!" class="text-body"><i
                     class="fas fa-long-arrow-alt-left me-2"></i>Regresar</a>
+              </div>
+
+            </div>
+
+            <div class="empty" *ngIf="items.length<1&&comprado==true">
+              <div class="info">
+                  <h1>Gracias por su compra, disfrute su comida</h1>
+                  <a href="#!" class="text-body"><i
+                    class="fas fa-long-arrow-alt-left me-2"></i>Regresar</a>
+                    <br>
+                  <img class="gracias" src="/assets/imagenes/gracias.jpg" alt="Imagen Gracias">
               </div>
 
             </div>
