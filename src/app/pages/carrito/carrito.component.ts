@@ -8,15 +8,12 @@ import { Carritos } from '../carritos.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 
-const templateParams = {
-  name: 'James',
-  notes: 'Check this out!',
-};
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.css'
+  styleUrl: './carrito.component.css',
+
 })
 export class CarritoComponent implements OnInit {
   form!: FormGroup;

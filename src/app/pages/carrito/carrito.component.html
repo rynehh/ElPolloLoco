@@ -139,16 +139,18 @@
                     }
                     </mat-form-field>
 
-                    <mat-form-field><div data-mdb-input-init class="form-outline form-white mb-4">
+                    <mat-form-field>
+                      <div data-mdb-input-init class="form-outline form-white mb-4">
                       <input type="ciudad" matInput id="CITY" class="form-control form-control-lg" size="17"
                         placeholder="Ciudad" formControlName="ciudad"/>
                     </div>
-                    @if (form.get('colonia') && !form.hasError('required')) {
+                    @if (form.get('ciudad') && !form.hasError('required')) {
                       <mat-error>Se requiere ciudad.</mat-error>
                   }
                   </mat-form-field>
                       
-                  <mat-form-field><div data-mdb-input-init class="form-outline form-white mb-4">
+                  <mat-form-field>
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
                     <input type="cp" matInput id="CP" class="form-control form-control-lg" size="17"
                       placeholder="Código Postal" minlength="5" maxlength="5" pattern="\d{5}" formControlName="cp"/>
                     </div>
@@ -169,7 +171,8 @@
                       }
                       </mat-form-field>
 
-                      <mat-form-field> <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <mat-form-field> 
+                        <div data-mdb-input-init class="form-outline form-white mb-4">
                         <input type="numT" matInput id="typeText" class="form-control form-control-lg" size="16"
                           placeholder="Número de tarjeta" minlength="16" maxlength="16" formControlName="numT"/>
                       </div>
@@ -193,13 +196,15 @@
                           
                         </div>
                         <div class="col-md-6">
-                          <mat-form-field><div data-mdb-input-init class="form-outline form-white">
+                          <mat-form-field>
+                            <div data-mdb-input-init class="form-outline form-white">
                             <input type="password" matInput id="CVV" class="form-control form-control-lg"
                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" pattern="\d{3}" formControlName="cvv"/>
                           </div>
                           @if (form.get('cvv') && !form.hasError('required')) {
                             <mat-error>Se requiere CVV.</mat-error>
-                        }</mat-form-field>
+                        }
+                      </mat-form-field>
                           
                         </div>
                       </div>

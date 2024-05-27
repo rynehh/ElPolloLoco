@@ -11,7 +11,7 @@ export class CarritoService {
   private cartItems = new BehaviorSubject<Producto[]>([]);
   private lastCart = new BehaviorSubject<Producto[]>([]);
   private carritos= new BehaviorSubject<Carritos[]>([]);
-  cartItems$ = this.cartItems.asObservable(); // Observable para que otros componentes puedan suscribirse
+  cartItems$ = this.cartItems.asObservable(); 
   lastCart$=this.lastCart.asObservable();
   carritos$=this.carritos.asObservable();
   aus=inject(AuthenticationService);
@@ -21,7 +21,6 @@ export class CarritoService {
     this.loadLastCart();
   }
 
-  // Cargar el carrito desde localStorage al iniciar el servicio
   private loadCart() {
     this.aus.user$.subscribe(user=>{
     const ls = localStorage.getItem('carritos');
@@ -45,7 +44,7 @@ export class CarritoService {
   }
 
 
-  // Sincronizar el carrito con localStorage y BehaviorSubject
+
   private syncCartItems(newCart: Producto[]) {
     this.cartItems.next(newCart);
     localStorage.setItem('carrito', JSON.stringify(newCart));
@@ -56,12 +55,12 @@ export class CarritoService {
     localStorage.setItem('ultimoCarrito', JSON.stringify(newCart));
   }
 
-  // Obtener el carrito actual
+
   getCartItems(): Producto[] {
     return this.cartItems.getValue();
   }
 
-  // Agregar un elemento al carrito
+
   addItem(product: Producto) {
     const currentCart = this.getCartItems();
     let exist: Producto | undefined = currentCart.find((item: Producto) => item.id === product.id);
@@ -75,7 +74,7 @@ export class CarritoService {
     this.syncCartItems(currentCart);
   }
 
-  // Actualizar la cantidad de un elemento en el carrito
+
   updateItemQuantity(productId: number, quantity: number) {
     const currentCart = this.getCartItems();
     const item = currentCart.find((product) => product.id === productId);
@@ -86,14 +85,13 @@ export class CarritoService {
     }
   }
 
-  // Eliminar un elemento del carrito
+
   removeItem(productId: number) {
     const currentCart = this.getCartItems();
     const updatedCart = currentCart.filter((product) => product.id !== productId);
     this.syncCartItems(updatedCart);
   }
 
-  // Limpiar el carrito
   clearCart() {
     this.setLastCart( this.getCartItems());
     this.syncCartItems([]);

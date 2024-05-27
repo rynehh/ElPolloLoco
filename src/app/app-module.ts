@@ -20,7 +20,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     AngularFireModule.initializeApp(defaultEnvironment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
   ],
   providers: [],
 })

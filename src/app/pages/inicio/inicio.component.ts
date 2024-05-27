@@ -5,8 +5,7 @@ import { Producto } from '../producto.model';
 import{ ProductoService } from '../producto.service';
 import{ CarritoService } from '../carrito.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Firestore, CollectionReference } from '@angular/fire/firestore'; // Correct Firestore imports
-import { addDoc,collection } from 'firebase/firestore';
+import { Firestore} from '@angular/fire/firestore';
 import { Carritos } from '../carritos.model';
 @Component({
   selector: 'app-inicio',
@@ -103,7 +102,6 @@ export class InicioComponent implements OnInit {
             return $(this).find('input[name="categoria"]').val() !== category;
           }).hide();
 
-          // Desplazar suavemente a la sección de productos
           $('html, body').animate({
             scrollTop: $('#productos').offset()?.top
           }, 100);
@@ -121,10 +119,10 @@ export class InicioComponent implements OnInit {
             menuPosition=0;
 
           var scrollToPosition = menuPosition - 150;
-            // Desplazar suavemente la página hasta la posición del menú
+
             $("html, body").animate({
                 scrollTop: scrollToPosition
-            }, 100); // El número 1000 es la duración en milisegundos del desplazamiento (1 segundo)
+            }, 100); 
         }
      });
     });
